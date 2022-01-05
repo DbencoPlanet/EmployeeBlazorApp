@@ -43,7 +43,7 @@ namespace EmployeeManagement.Web.Pages
             {
                 Employee = new Employee
                 {
-                    DepartmentId = EditEmployeeModel.DepartmentId,
+                    DepartmentId = 1,
                     DateOfBrith = DateTime.Now,
                     PhotoPath = "images/nophoto.jpg"
                 };
