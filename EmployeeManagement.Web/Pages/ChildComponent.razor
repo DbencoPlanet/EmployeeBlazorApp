@@ -1,0 +1,7 @@
+﻿<input id="firstName" @attributes="InputAttributes" placeholder="Default Placeholder"/>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>();
+}

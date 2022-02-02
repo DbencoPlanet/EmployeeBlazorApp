@@ -38,8 +38,17 @@ namespace EmployeeManagement.Web.Services
 
         public async Task<Employee> CreateEmployee(Employee newEmployee)
         {
-            await httpClient.PostAsJsonAsync<Employee>("api/employees", newEmployee);
-            return newEmployee;
+            //await httpClient.PostAsJsonAsync<Employee>("api/employees", newEmployee);
+            //return newEmployee;
+
+            var response = await httpClient.PostAsJsonAsync("api/employees", newEmployee);
+            var result = await response.Content.ReadFromJsonAsync<Employee>();
+            return result;
+        }
+
+        public async Task DeleteEmployee(int id)
+        {
+            await httpClient.DeleteAsync($"api/employees/{id}");
         }
     }
 }

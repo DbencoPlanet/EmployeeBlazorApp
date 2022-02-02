@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>EmployeeManagement.Api</name>
+        <name>EmployeeManagement.Web</name>
     </assembly>
     <members>
     </members>

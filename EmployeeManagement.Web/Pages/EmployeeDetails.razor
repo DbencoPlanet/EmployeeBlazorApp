@@ -32,7 +32,8 @@ else
                     <a href="/" class="btn btn-primary">Back</a>
                     @* <a href="#" class="btn btn-primary">Edit</a>*@
                     <a href="@($"editemployee/{Employee.EmployeeId}")" class="btn btn-primary m-1">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    @*<a href="#" class="btn btn-danger">Delete</a>*@
+                     <a @onclick="Delete_Click" class="btn btn-danger">Delete</a>
                 </div>
                 @*<div class="card-footer text-center">
                     <a href="/" class="btn btn-primary">Back</a>
@@ -42,4 +43,8 @@ else
             </div>
         </div>
     </div>
+
+    <Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDelete_Click"
+         ConfirmationMessage=@($"Are you sure you want to delete \"{Employee.FirstName}\"")>
+</Confirm>
 }

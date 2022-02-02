@@ -31,22 +31,36 @@ namespace EmployeeManagement.Web.Pages
         [Parameter]
         public string Id { get; set; }
 
+        public string PageHeader { get; set; }
+
+        [Parameter]
+        public EventCallback<int> OnEmployeeDeleted { get; set; }
+
         protected async override Task OnInitializedAsync()
         {
             int.TryParse(Id, out int employeeId);
 
             if (employeeId != 0)
             {
+                PageHeader = "Edit Employee";
                 Employee = await EmployeeService.GetEmployee(int.Parse(Id));
             }
             else
             {
+                PageHeader = "Create Employee";
                 Employee = new Employee
                 {
                     DepartmentId = 1,
                     DateOfBrith = DateTime.Now,
-                    PhotoPath = "images/nophoto.jpg"
+                    PhotoPath = "images/nophoto.jpg",
+                    Department = new Department
+                    {
+                        DepartmentId = 0,
+                        DepartmentName = "HR"
+                    }
                 };
+                //Employee.Department.DepartmentId = 0;
+                //Employee.Department.DepartmentName = "HR";
             }
 
             Departments = (await DepartmentService.GetDepartments()).ToList();
@@ -83,5 +97,32 @@ namespace EmployeeManagement.Web.Pages
                 NavigationManager.NavigateTo("/");
             }
         }
+
+        protected Pragim.Components.ConfirmBase DeleteConfirmation { get; set; }
+
+        protected void Delete_Click()
+        {
+            DeleteConfirmation.Show();
+        }
+
+        protected async Task ConfirmDelete_Click(bool deleteConfirmed)
+        {
+            if (deleteConfirmed)
+            {
+                await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+                await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+            }
+        }
+
+
+        //protected async Task Delete_Click()
+        //{
+        //    await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+        //    await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+        //    await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+        //    //NavigationManager.NavigateTo("/");
+        //}
+
+
     }
 }

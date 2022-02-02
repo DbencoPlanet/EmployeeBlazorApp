@@ -14,7 +14,10 @@ else
     <div class="card-group">
         @foreach (var employee in Employees)
         {
-            <DisplayEmployee Employee="employee" ShowFooter="ShowFooter" OnEmployeeSelection="EmployeeSelectionChanged">
+            <DisplayEmployee Employee="employee"
+                     ShowFooter="ShowFooter"
+                     OnEmployeeSelection="EmployeeSelectionChanged"
+                     OnEmployeeDeleted="EmployeeDeleted">
             </DisplayEmployee>
         }
     </div>

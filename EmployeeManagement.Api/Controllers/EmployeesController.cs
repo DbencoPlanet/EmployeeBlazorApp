@@ -69,7 +69,10 @@ namespace EmployeeManagement.Api.Controllers
         //}
 
         [HttpPost]
-        public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public async Task<ActionResult<Employee>> CreateEmployee([FromBody]Employee employee)
         {
             try
             {
@@ -164,6 +167,7 @@ namespace EmployeeManagement.Api.Controllers
             }
         }
 
+
         [HttpGet("{search}")]
         public async Task<ActionResult<IEnumerable<Employee>>> Search(string name, Gender? gender)
         {
@@ -184,6 +188,8 @@ namespace EmployeeManagement.Api.Controllers
                     "Error retrieving data from the database");
             }
         }
+
+       
     }
 }
 

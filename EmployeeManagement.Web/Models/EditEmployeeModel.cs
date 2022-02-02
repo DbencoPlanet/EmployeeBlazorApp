@@ -16,7 +16,7 @@ namespace EmployeeManagement.Web.Models
         public string LastName { get; set; }
 
         [Required]
-        [EmailDomainValidator(AllowedDomain = "pragimtech.com")]
+        [EmailDomainValidator(AllowedDomain = "dbencotech.com")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -26,10 +26,10 @@ namespace EmployeeManagement.Web.Models
         public string ConfirmEmail { get; set; }
         public DateTime DateOfBrith { get; set; }
         public Gender Gender { get; set; }
-        public int? DepartmentId { get; set; }
+        public int DepartmentId { get; set; }
 
-        [ValidateComplexType]
-        public Department Department { get; set; } =  new Department();
+        //[ValidateComplexType]
+        public Department Department { get; set; } = new Department();
         public string PhotoPath { get; set; }
     }
 }
